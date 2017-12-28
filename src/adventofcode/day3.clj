@@ -1,6 +1,7 @@
 (ns adventofcode.day3)
 
-; http://adventofcode.com/2017/day/3
+;; Advent of Code challenges
+;; http://adventofcode.com/2017/day/3
 ;; Part 1
 
 ; My approach here is to directly calculate and not search.
