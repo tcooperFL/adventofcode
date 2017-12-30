@@ -18,7 +18,8 @@
        (map count)
        (reduce +)))
 
-; Sum up the 1's in the binary representations of all our hash inputs
+; Sum up the 1's in the binary representations of all our hash inputs.
+; Use day10's part2 solution for knot-hash, and compute them all in parallel
 (defn part1 [inputs]
   (->> inputs (pmap knot-hash) (map used-in) (reduce + 0)))
 
