@@ -20,19 +20,19 @@
       (vec (map create-edge-list lines)))))
 
 ; Compute graph partition that includes this node, returning the number of nodes in the partition
-(defn partition-count
+(defn partition-size
   ([g n]
-   (let [visited (transient #{})] (partition-count g n visited (partial conj! visited))))
-  ([g n seen remember]
+   (let [visited (transient #{})] (partition-size n g visited (partial conj! visited))))
+  ([n neighbors seen remember]
    (reduce +
-           (for [next (g n) :when (not (seen next))]
+           (for [next (neighbors n) :when (not (seen next))]
              (do
                (remember next)
-               (inc (partition-count g next seen remember)))))))
+               (inc (partition-size next neighbors seen remember)))))))
 
 ; Load the input graph and count the partition containing node 0
 (defn part1 [input-file]
-  (partition-count (load-graph input-file) 0))
+  (partition-size (load-graph input-file) 0))
 
 ; (part1 day12-input-file)
 ; => 134
@@ -40,15 +40,17 @@
 ;; Part 2
 
 ; Count the partitions.
-(defn part2 [input-file]
-  (let [g (load-graph input-file)
-        visited (transient #{})
+(defn partition-count [g]
+  (let [visited (transient #{})
         remember (partial conj! visited)]
     (count
       (for [i (range (count g)) :when (not (visited i))]
         (do
           (remember i)
-          (partition-count g i visited remember))))))
+          (partition-size i g visited remember))))))
+
+(defn part2 [input-file]
+  (partition-count (load-graph input-file)))
 
 ; (part2 day12-input-file
 ; => 193
