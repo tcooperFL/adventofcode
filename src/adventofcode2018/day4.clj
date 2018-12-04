@@ -35,7 +35,7 @@
     (re-seq #"\[(\d+)-(\d+)-(\d+) (\d\d):(\d\d)\] (.*)" s)
     (map (fn [[_ y m d h minute action]]
            (merge
-             {:time   (Long/parseLong (str y m d y minute))
+             {:time   (Long/parseLong (str y m d h minute))
               :minute (Long/parseLong minute)}
              (parse-action action)))
          )
