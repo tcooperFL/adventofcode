@@ -1,8 +1,7 @@
-(ns adventofcode.day19
-  (:require [clojure.core.async :refer [>! >!! <! <!! go chan buffer close! thread alts! alts!! timeout]]))
+(ns adventofcode.day19)
 
 ;; Advent of Code challenges
-;; http://adventofcode.com/2017/day/18
+;; http://adventofcode.com/2017/day/19
 ;; Part 1
 
 ;; Problem setup data
