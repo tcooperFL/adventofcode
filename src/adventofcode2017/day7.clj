@@ -1,11 +1,11 @@
-(ns adventofcode.day7)
+(ns adventofcode2017.day7)
 
 ;; Advent of Code challenges
 ;; http://adventofcode.com/2017/day/7
 ;; Part 1
 
-(def day7-input-file "resources/day7-input.txt")
-(def sample-data-file "resources/day7-sample-input.txt")
+(def day7-input-file "resources/2017/day7-input.txt")
+(def sample-data-file "resources/2017/day7-sample-input.txt")
 
 ; Create a program from a one-line iput description
 (defn create-program [s]

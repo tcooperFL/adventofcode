@@ -1,4 +1,4 @@
-(ns adventofcode.day20
+(ns adventofcode2017.day20
   (:use [clojure.set :refer [union intersection difference]]))
 
 ;; Advent of Code challenges
@@ -6,9 +6,9 @@
 ;; Part 1
 
 ;; Problem setup data
-(def input-file "resources/day20-input.txt")
+(def input-file "resources/2017/day20-input.txt")
 
-(def sample-input-file "resources/day20-sample-input.txt")
+(def sample-input-file "resources/2017/day20-sample-input.txt")
 
 ;; In the long run the starting point doesn't matter except in the case of a tie.
 ;; First, consider only those with the lowest acceleration vector.

@@ -1,11 +1,11 @@
-(ns adventofcode.day8)
+(ns adventofcode2017.day8)
 
 ;; Advent of Code challenges
 ;; http://adventofcode.com/2017/day/8
 ;; Part 1
 
-(def day8-input-file "resources/day8-input.txt")
-(def sample-data-file "resources/day8-sample-input.txt")
+(def day8-input-file "resources/2017/day8-input.txt")
+(def sample-data-file "resources/2017/day8-sample-input.txt")
 
 (def op-fns {"<" <, ">" >, "<=" <=, ">=" >=, "==" =, "!=" not=, "inc" +, "dec" -})
 

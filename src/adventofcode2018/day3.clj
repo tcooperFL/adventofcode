@@ -49,4 +49,4 @@
                      data))))
 
 ; (isolated (get-data))
-; => 331
+; => (331)

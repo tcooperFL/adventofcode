@@ -1,11 +1,11 @@
-(ns adventofcode.day16)
+(ns adventofcode2017.day16)
 
 ;; Advent of Code challenges
 ;; http://adventofcode.com/2017/day/16
 ;; Part 1
 
 ;; Problem setup data
-(def day16-input-file "resources/day16-input.txt")
+(def day16-input-file "resources/2017/day16-input.txt")
 (def line-size 16)
 
 (defn alphabet-string

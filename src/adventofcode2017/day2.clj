@@ -1,9 +1,9 @@
-(ns adventofcode.day2)
+(ns adventofcode2017.day2)
 
 ;; Advent of Code challenges
 ;; https://adventofcode.com/2017/day/2
 
-(def day2-input-file "resources/day2-input.dat")
+(def day2-input-file "resources/2017/day2-input.dat")
 
 (defn process-file [input-file tokenize-fn parse-fn row-calc-fn]
   (with-open [rdr (clojure.java.io/reader input-file)]

@@ -1,10 +1,10 @@
-(ns adventofcode.day5)
+(ns adventofcode2017.day5)
 
 ;; Advent of Code challenges
 ;; http://adventofcode.com/2017/day/5
 ;; Part 1
 
-(def day5-input-file "resources/day5-input.dat")
+(def day5-input-file "resources/2017/day5-input.dat")
 (def sample-data [0 3 0 1 -3])
 
 ; Read the input file into a sequence of ints

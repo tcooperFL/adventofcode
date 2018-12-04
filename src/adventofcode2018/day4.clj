@@ -18,14 +18,15 @@
   "Transform the data into sleep records with keys [:guard :sleep :duration]"
   [data]
   (loop [[r & remaining] data guard nil sleep-started nil result []]
-    (if (nil? r) result
-                 (let [g (get r :guard guard)
-                       s (if (= (:action r) :sleep) (:minute r) sleep-started)]
-                   (recur remaining g s
-                          (if (= (:action r) :wake)
-                            (conj result
-                                  {:guard g :sleep sleep-started :duration (- (:minute r) sleep-started)})
-                            result))))))
+    (if (nil? r)
+      result
+      (let [g (get r :guard guard)
+            s (if (= (:action r) :sleep) (:minute r) sleep-started)]
+        (recur remaining g s
+               (if (= (:action r) :wake)
+                 (conj result
+                       {:guard g :sleep sleep-started :duration (- (:minute r) sleep-started)})
+                 result))))))
 
 (defn get-data
   "Parse the input records as a string into a map sorted by time"

@@ -1,10 +1,10 @@
-(ns adventofcode.day9)
+(ns adventofcode2017.day9)
 
 ;; Advent of Code challenges
 ;; http://adventofcode.com/2017/day/9
 ;; Part 1
 
-(def day9-input-file "resources/day9-input.txt")
+(def day9-input-file "resources/2017/day9-input.txt")
 
 ; Fairly straight-forward state machine. Doesn't feel idiomatic.
 (defn score-groups [s]

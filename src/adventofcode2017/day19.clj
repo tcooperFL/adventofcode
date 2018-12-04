@@ -1,11 +1,11 @@
-(ns adventofcode.day19)
+(ns adventofcode2017.day19)
 
 ;; Advent of Code challenges
 ;; http://adventofcode.com/2017/day/19
 ;; Part 1
 
 ;; Problem setup data
-(def input-file "resources/day19-input.txt")
+(def input-file "resources/2017/day19-input.txt")
 
 (def sample "     |          \n     |  +--+    \n     A  |  C    \n F---|----E|--+ \n     |  |  |  D \n     +B-+  +--+ \n")
 

@@ -1,10 +1,10 @@
-(ns adventofcode.day4)
+(ns adventofcode2017.day4)
 
 ;; Advent of Code challenges
 ;; http://adventofcode.com/2017/day/4
 ;; Part 1
 
-(def day4-input-file "resources/day4-input.txt")
+(def day4-input-file "resources/2017/day4-input.txt")
 
 (defn no-duplicates? [words]
   (= (count words) (count (set words))))

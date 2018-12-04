@@ -1,4 +1,4 @@
-(ns adventofcode.day14
+(ns adventofcode2017.day14
   (:require [adventofcode.day10 :refer [part2] :rename {part2 knot-hash}]
             [adventofcode.day12 :refer [partition-size]]))
 

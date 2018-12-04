@@ -1,4 +1,4 @@
-(ns adventofcode.day12)
+(ns adventofcode2017.day12)
 
 ;; Advent of Code challenges
 ;; http://adventofcode.com/2017/day/12
@@ -6,7 +6,7 @@
 
 ; Find the number of reachable nodes in an undirected graph from a given node.
 
-(def day12-input-file "resources/day12-input.txt")
+(def day12-input-file "resources/2017/day12-input.txt")
 
 ; Create node from one-line description
 (defn create-edge-list [s]

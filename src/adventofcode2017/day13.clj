@@ -1,10 +1,10 @@
-(ns adventofcode.day13)
+(ns adventofcode2017.day13)
 
 ;; Advent of Code challenges
 ;; http://adventofcode.com/2017/day/13
 ;; Part 1
 
-(def day13-input-file "resources/day13-input.txt")
+(def day13-input-file "resources/2017/day13-input.txt")
 
 (defn caught? [[i n]]
   (zero? (mod i (* 2 (dec n)))))

@@ -1,4 +1,4 @@
-(ns adventofcode.day18
+(ns adventofcode2017.day18
   (:require [clojure.core.async :refer [>! >!! <! <!! go chan buffer close! thread alts! alts!! timeout]]))
 
 ;; Advent of Code challenges
@@ -6,7 +6,7 @@
 ;; Part 1
 
 ;; Problem setup data
-(def input-file "resources/day18-input.txt")
+(def input-file "resources/2017/day18-input.txt")
 
 (def sample "set a 1\nadd a 2\nmul a a\nmod a 5\nsnd a\nset a 0\nrcv a\njgz a -1\nset a 1\njgz a -2")
 

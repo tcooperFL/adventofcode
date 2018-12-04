@@ -1,4 +1,4 @@
-(ns adventofcode.day10)
+(ns adventofcode2017.day10)
 
 ;; Advent of Code challenges
 ;; http://adventofcode.com/2017/day/10
