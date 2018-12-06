@@ -1,4 +1,4 @@
-# adventofcode2017
+# adventofcode
 
 My Clojure solutions to adventocode days.
 
