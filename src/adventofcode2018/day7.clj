@@ -1,4 +1,5 @@
 (ns adventofcode2018.day7
+  (:require [util.trace :refer :all])
   (:import [java.io BufferedReader StringReader]))
 
 ;; Advent of Code challenges
@@ -14,6 +15,7 @@
   (map #(rest (re-matches #"Step (\w) must be finished before step (\w).*" %))
        (line-seq (BufferedReader. (StringReader. s)))))
 
+;; A graph is in this form: { "A" {:succ #{"B" "C"} :pred #{...} }, ... }
 (defn create-graph
   "Create predecessors and successor for each step."
   [data]
@@ -23,10 +25,11 @@
               [succ :pred] (conj (get-in m [succ :pred] #{}) pred)))
           {} data))
 
-(defn choose-next
-  "Pick the best next step that has no predecessors."
-  [g]
-  (first (sort (filter #(empty? (get-in g [% :pred])) (keys g)))))
+(defn next-steps
+  "Return the next steps in alphabetic order that have no predecessors."
+  ([g] (next-steps (keys g) g #{}))
+  ([steps dependencies ignore]
+   (sort (filter #(empty? (reduce disj (get-in dependencies [% :pred]) ignore)) steps))))
 
 (defn drop-step
   "Remove this step from the graph and from all its successor's pred sets"
@@ -39,7 +42,7 @@
   "Look through picking the next best step with no predecessors until we're done."
   [g]
   (loop [steps g path []]
-    (if-let [next (choose-next steps)]
+    (if-let [next (first (next-steps steps))]
       (recur
         (drop-step steps next)
         (conj path next))
@@ -49,11 +52,61 @@
   (->> g create-graph step-ordering))
 
 ; (part1 (get-data (slurp input-data)))
-; =>
+; => "BGKDMJCNEQRSTUZWHYLPAFIVXO"
 
 ; Part 2
 
-; TBS
+(defn work-time
+  "The time it takes to do this step"
+  [fixed s]
+  (+ 1 fixed (- (int (first s)) (int \A))))
 
-; (part2 (get-data (slurp input-data))
-; =>
+(defn create-schedule [g w f]
+  {:dependencies g
+   :todo         (set (keys g))
+   :ready        #{}
+   :in-progress  '()
+   :done         []
+   :workers      w
+   :fixed        f})
+
+(defn tick
+  "Do one unit of work and return the state after that is done."
+  [g]
+  (let [in-progress (map #(update-in % [1] dec) (:in-progress g))
+        just-finished (set (map first (filter (comp zero? second) in-progress)))
+        done (reduce conj (:done g) just-finished)
+        ready (reduce conj (:ready g) (next-steps (:todo g) (:dependencies g) done))
+        starting (take (- (:workers g) (- (count in-progress) (count just-finished)))
+                       (sort ready))]
+    (merge g
+           {:done        done
+            :in-progress (reduce conj
+                                 (remove #(just-finished (first %)) in-progress)
+                                 (map #(vector % (work-time (:fixed g) %)) starting))
+            :ready       (reduce disj ready starting)
+            :todo        (reduce disj (:todo g) ready)})))
+
+(defn done?
+  "We are done when all the steps are done."
+  [sched]
+  (= (count (:dependencies sched)) (count (:done sched))))
+
+(defn do-work
+  "Create a stream of states corresponding to the state after each second of work."
+  [sched]
+  (map-indexed vector (iterate tick (tick sched))))
+
+(defn schedule-ordering
+  "Work on the steps until finished, and return the final clock time and state"
+  [g workers fixed]
+  (first
+    (drop-while #(not (done? (second %)))
+                (do-work (create-schedule g workers fixed)))))
+
+(defn part2 []
+  ; Myself + 4 helper elves = 5 workers
+  (-> (slurp input-data) get-data create-graph (schedule-ordering 5 60)))
+
+; (part2)
+; => [941 ...]
