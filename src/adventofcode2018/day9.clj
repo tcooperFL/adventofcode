@@ -1,5 +1,4 @@
-(ns adventofcode2018.day9
-  (:require [util.trace :refer :all]))
+(ns adventofcode2018.day9)
 
 ;; Advent of Code challenges
 ;; https://adventofcode.com/2018/day/9

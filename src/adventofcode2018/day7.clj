@@ -1,5 +1,4 @@
 (ns adventofcode2018.day7
-  (:require [util.trace :refer :all])
   (:import [java.io BufferedReader StringReader]))
 
 ;; Advent of Code challenges
