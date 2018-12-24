@@ -16,8 +16,7 @@
   [file]
   (with-open [rdr (io/reader file)]
     (doall
-      (map (fn [line]
-             (partition 2 (map read-string (rest (re-matches line-pattern line)))))
+      (map #(partition 2 (map read-string (rest (re-matches line-pattern %))))
            (line-seq rdr)))))
 
 (defn calc-at
