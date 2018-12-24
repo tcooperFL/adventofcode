@@ -4,7 +4,8 @@
   :license {:name "Eclipse Public License"
             :url  "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.9.0"]
-                 [org.clojure/core.async "0.4.490"]]
+                 [org.clojure/core.async "0.4.490"]
+                 [incanter "1.9.3"]]
   :target-path "target/%s"
   :profiles {:uberjar {:aot :all}
              :dev     {:global-vars {*assert* true *print-length* 100 *print-level* 10}}})
