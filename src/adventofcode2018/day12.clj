@@ -88,4 +88,5 @@
         base (first (drop offset (iterate next-generation start)))]
     (score (update base :start + loop-shift))))
 
+;; (part2 (get-data input-data) generations)
 ;; => 1900000000384
