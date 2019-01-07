@@ -8,4 +8,4 @@
                  [incanter "1.9.3"]]
   :target-path "target/%s"
   :profiles {:uberjar {:aot :all}
-             :dev     {:global-vars {*assert* true *print-length* 20 *print-level* 5}}})
+             :dev     {:global-vars {*assert* true *print-length* 20 *print-level* 6}}})
