@@ -191,7 +191,7 @@
     (attack combat attacker enemy)))
 
 (defn tick
-  "Do one round of moves/attacks. Return updated combat with number of :moves made this round."
+  "Do one round of moves/attacks. Return combat with :updated true if any moves or attacks occurred in this round"
   [{:keys [units walls rounds], :or {rounds -1} :as combat}]
   #_{:post [(do (log-round %) true)]}
   (let [round (reduce (fn [{:keys [units] :as round} unit]
