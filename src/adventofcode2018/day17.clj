@@ -157,4 +157,4 @@
   (count-tiles #{:water} (pour (build-slice input))))
 
 ;; (part2 input-data)
-;; => 533
+;; => 21787
