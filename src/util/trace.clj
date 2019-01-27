@@ -1,6 +1,6 @@
 (ns util.trace)
 
-(def level (atom {}))
+(def level (atom 0))
 (defn- indent [i] (apply str (repeat i "  ")))
 
 (defn enter
@@ -9,11 +9,9 @@
   (do
     (println
       (apply str
-             `(~(indent (dec ((swap! level update name (fnil inc 0)) name)))
-                "->"
-                ~name
-                ~@args)))
-    (@level name)))
+             `(~(indent (dec (swap! level inc)))
+                "->" ~name " " ~@args)))
+    @level))
 
 (defn leave
   "Simple indenting trace exit function. Suggested usage: {:post [(leave <fnname> %)]}"
@@ -21,7 +19,7 @@
   (do
     (println
       (apply str
-             `(~(indent ((swap! level update name #(max 0 (dec (or % 1)))) name))
-                "<-" ~name ~@args)))
-    (@level name)))
+             `(~(indent (swap! level dec))
+                "<-" ~name " " ~@args)))
+    @level))
 
