@@ -1,6 +1,5 @@
 (ns adventofcode2018.day17
-  (:require [clojure.java.io :as io]
-            [clojure.set :as set]))
+  (:require [clojure.java.io :as io]))
 
 ;; Advent of Code challenges
 ;; https://adventofcode.com/2018/day/17
