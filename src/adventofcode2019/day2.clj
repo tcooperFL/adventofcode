@@ -6,7 +6,7 @@
 (def sample-data [1, 9, 10, 3, 2, 3, 11, 0, 99, 30, 40, 50])
 
 (defn get-data
-  "Parse the input file into an array of positive and negative numbers"
+  "Parse the input file into an array of numbers"
   []
   (read-string (str "[" (slurp input-data) "]")))
 
