@@ -15,10 +15,8 @@
    :positions    (zipmap (range) src)
    :running      true})
 
-(defn step [program]
-  (let [p-map (:positions program)
-        i-map (:instructions program)
-        [code in1 in2 out] (map p-map (first i-map))]
+(defn step [{p-map :positions, i-map :instructions :as program}]
+  (let [[code in1 in2 out] (map p-map (first i-map))]
     (assoc
       (condp = code
         99 (assoc program :running false)
@@ -27,15 +25,15 @@
         (throw (IllegalStateException. (format "unrecognized code: %d" code))))
       :instructions (rest i-map))))
 
-(defn display [program]
-  (partition 4 4 (map (:positions program) (sort (keys (:positions program))))))
+(defn display [{:keys [positions]}]
+  (partition 4 4 (map positions (sort (keys positions)))))
 
 (defn run [program]
   (first (drop-while :running (iterate step program))))
 
-(defn run-with [p noun verb]
+(defn run-with [{:keys [positions] :as p} noun verb]
   (get (:positions
-         (run (assoc p :positions (merge (:positions p) {1 noun 2 verb}))))
+         (run (assoc p :positions (merge positions {1 noun 2 verb}))))
        0))
 
 (defn part1 []
