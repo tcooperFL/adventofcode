@@ -1,8 +1,5 @@
 (ns adventofcode2019.day2
-  (:require [clojure.java.io :as io])
-  (:use util.trace
-        clojure.repl
-        clojure.pprint))
+  (:require [clojure.java.io :as io]))
 
 (def input-data "resources/2019/day2-input.txt")
 
@@ -54,4 +51,5 @@
   (let [[n v] (find-pair (create-program (get-data)) target)]
     (+ (* n 100) v)))
 
-;; (part2 19690720) ==> 7960
+;; (time (part2 19690720)) ==> 7960
+;; "Elapsed time: 453.327262 msecs"

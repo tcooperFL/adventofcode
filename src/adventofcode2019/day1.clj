@@ -1,8 +1,5 @@
 (ns adventofcode2019.day1
-  (:require [clojure.java.io :as io])
-  (:use util.trace
-        clojure.repl
-        clojure.pprint))
+  (:require [clojure.java.io :as io]))
 
 (def input-data "resources/2019/day1-input.txt")
 
