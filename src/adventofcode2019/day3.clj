@@ -27,8 +27,7 @@
 
 (defn create-path
   "Given x and y coordinates and a move instruction, return a sequence of all
-  [x,y] positions visited when executing that move, in order. The first
-  position returned is the last position on the path."
+  [x,y] positions visited when executing that move, in order."
   [x y move]
   (let [[fx fy n] (parse-move move)]
     (map vector (take n (iterate fx (fx x))) (take n (iterate fy (fy y))))))
