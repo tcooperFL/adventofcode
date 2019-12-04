@@ -9,7 +9,7 @@
 (defn get-data
   "Read instructions from the file and return as a seq of 2 strings"
   [file]
-  (with-open [rdr (clojure.java.io/reader "resources/2019/day3-input.txt")]
+  (with-open [rdr (clojure.java.io/reader file)]
     (doall (line-seq rdr))))
 
 (defn parse-move

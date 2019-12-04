@@ -8,7 +8,7 @@
   (- (int (/ mass 3)) 2))
 
 (defn apply-to-file [file f]
-  (with-open [rdr (clojure.java.io/reader "resources/2019/day1-input.txt")]
+  (with-open [rdr (clojure.java.io/reader file)]
     (reduce +
             (->> rdr line-seq (map #(Integer/parseInt %)) (map f)))))
 
@@ -16,10 +16,13 @@
   (apply-to-file input-data simple-fuel-required))
 
 ;; Part1:
-;; (part1) ==> 3252208
+;; ==> 3252208
 
 (defn recursive-fuel-required [mass]
   (reduce + (rest (take-while pos? (iterate simple-fuel-required mass)))))
 
 (defn part2 []
   (apply-to-file input-data recursive-fuel-required))
+
+;; Part2:
+;; ==> 4875451
