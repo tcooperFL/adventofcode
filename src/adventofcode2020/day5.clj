@@ -1,6 +1,5 @@
 (ns adventofcode2020.day5
-  (:require [clojure.java.io :as io]
-            [util.trace :as t]))
+  (:require [clojure.java.io :as io]))
 
 (def input-data "resources/2020/day5-input.txt")
 (def plane {:rows 128 :columns 8})
