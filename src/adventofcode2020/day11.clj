@@ -13,15 +13,16 @@
 (defn inspect [[room r c]] (get-in (:positions room) [r c]))
 
 (defn occupied? [loc] (= (inspect loc) \#))
+(defn is-floor? [loc] (= (inspect loc) \.))
 
-(defn move [[room r c] fx fy] [room (fx r) (fy c)])
+(defn move [[room r c] [fx fy]] [room (fx r) (fy c)])
 
 (def directions
   (for [dx [dec identity inc] dy [dec identity inc]
         :when (not= [identity identity] [dx dy])] [dx dy]))
 
 (defn surrounding [[room r c]]
-  (map (fn [[fx fy]] (move [room r c] fx fy)) directions))
+  (map #(move [room r c] %) directions))
 
 (defn occupied-adjacent [loc]
   (count (filter occupied? (surrounding loc))))
@@ -75,9 +76,9 @@
 (defn in-sight
   "What is the first non-empty item in each direction?"
   [location]
-  (map (fn [[fx fy]]
+  (map (fn [direction]
          (first
-           (drop-while #(= (inspect %) \.) (rest (iterate #(move % fx fy) location)))))
+           (drop-while is-floor? (rest (iterate #(move % direction) location)))))
        directions))
 
 (defn occupied-in-sight
