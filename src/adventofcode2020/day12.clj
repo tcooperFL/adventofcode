@@ -25,14 +25,14 @@
 
 ;; Executing instructions
 
-(defmulti execute (fn [op pos] [(first op) (:part pos)]))
-(defmethod execute ["N" :part1] [[_ arg] p] (update p :sy + arg))
-(defmethod execute ["S" :part1] [[_ arg] p] (update p :sy - arg))
-(defmethod execute ["E" :part1] [[_ arg] p] (update p :sx + arg))
-(defmethod execute ["W" :part1] [[_ arg] p] (update p :sx - arg))
-(defmethod execute ["L" :part1] [[_ arg] p] (update p :facing turn-left arg))
-(defmethod execute ["R" :part1] [[_ arg] p] (update p :facing turn-right arg))
-(defmethod execute ["F" :part1] [[_ arg] p] (execute [(:facing p) arg] p))
+(defmulti execute (fn [pos op] [(:part pos) (first op)]))
+(defmethod execute [:part1 "N"] [p [_ arg]] (update p :sy + arg))
+(defmethod execute [:part1 "S"] [p [_ arg]] (update p :sy - arg))
+(defmethod execute [:part1 "E"] [p [_ arg]] (update p :sx + arg))
+(defmethod execute [:part1 "W"] [p [_ arg]] (update p :sx - arg))
+(defmethod execute [:part1 "L"] [p [_ arg]] (update p :facing turn-left arg))
+(defmethod execute [:part1 "R"] [p [_ arg]] (update p :facing turn-right arg))
+(defmethod execute [:part1 "F"] [p [_ arg]] (execute p [(:facing p) arg]))
 
 (defn create-instruction
   "Given the instruction string, return a function taking a position and returning a new one"
@@ -48,12 +48,10 @@
 
 ;; Solution
 
-(defn move [pos instruction] (execute instruction pos))
-
 (defn create-position1 [] {:part :part1 :sx 0 :sy 0 :facing "E"})
 
 (defn solve [start instructions]
-  (let [result (reduce move start instructions)]
+  (let [result (reduce execute start instructions)]
     (+ (Math/abs ^long (:sx result)) (Math/abs ^long (:sy result)))))
 
 (defn part1 [file]
@@ -63,30 +61,30 @@
 ; "Elapsed time: 2.309051 msecs"
 ; => 2879
 
-(defmethod execute ["N" :part2] [[_ arg] p] (update p :dy + arg))
-(defmethod execute ["S" :part2] [[_ arg] p] (update p :dy - arg))
-(defmethod execute ["E" :part2] [[_ arg] p] (update p :dx + arg))
-(defmethod execute ["W" :part2] [[_ arg] p] (update p :dx - arg))
+(defmethod execute [:part2 "N"] [p [_ arg]] (update p :dy + arg))
+(defmethod execute [:part2 "S"] [p [_ arg]] (update p :dy - arg))
+(defmethod execute [:part2 "E"] [p [_ arg]] (update p :dx + arg))
+(defmethod execute [:part2 "W"] [p [_ arg]] (update p :dx - arg))
 
 (defn rotate [[x y] radians]
   (let [cos-r (Math/cos radians)
         sin-r (Math/sin radians)]
     (mapv #(Math/round ^double %)
-          [(- (* x cos-r) (* y sin-r) )
+          [(- (* x cos-r) (* y sin-r))
            (+ (* y cos-r) (* x sin-r))])))
 
 (defn rotate-waypoint [{:keys [dx dy]} degrees]
   (rotate [dx dy] (Math/toRadians degrees)))
 
-(defmethod execute ["L" :part2] [[_ degrees] p]
+(defmethod execute [:part2 "L"] [p [_ degrees]]
   (let [[x y] (rotate-waypoint p degrees)]
     (update (assoc p :dx x :dy y) :facing turn-left degrees)))
 
-(defmethod execute ["R" :part2] [[_ degrees] p]
+(defmethod execute [:part2 "R"] [p [_ degrees]]
   (let [[x y] (rotate-waypoint p (- 360 degrees))]
     (update (assoc p :dx x :dy y) :facing turn-left degrees)))
 
-(defmethod execute ["F" :part2] [[_ n] {:keys [dx dy sx sy] :as p}]
+(defmethod execute [:part2 "F"] [{:keys [dx dy sx sy] :as p} [_ n]]
   (assoc p :sx (+ sx (* n dx)) :sy (+ sy (* n dy))))
 
 (defn create-position2 [] {:part :part2 :dx 10 :dy 1 :sx 0 :sy 0 :facing "E"})
