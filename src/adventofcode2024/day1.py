@@ -1,6 +1,6 @@
 # Link: https://adventofcode.com/2024/day/1
 
-from pprit import pprint
+from pprint import pprint
 from utils import timed
 
 INPUT_FILE = "resources/2024/day1-input.txt"
