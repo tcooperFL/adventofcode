@@ -1,6 +1,5 @@
 # Link: https://adventofcode.com/2024/day/2
 
-from pprint import pprint
 from utils import timed
 
 INPUT_FILE = "resources/2024/day2-input.txt"
@@ -41,7 +40,6 @@ def part1():
     return len(filter_reports(get_reports()))
 
 
-# Part 2
 def remove_level(report, level):
     return report[:level] + report[level + 1 :]
 

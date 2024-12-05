@@ -1,6 +1,5 @@
 # Link: https://adventofcode.com/2024/day/3
 
-from pprint import pprint
 from utils import timed
 import re
 

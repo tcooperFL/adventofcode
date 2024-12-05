@@ -1,6 +1,5 @@
 # Link: https://adventofcode.com/2024/day/4
 
-from pprint import pprint
 from utils import timed
 
 INPUT_FILE = "resources/2024/day4-input.txt"
@@ -77,6 +76,7 @@ def get_puzzle():
 def part1():
     ws = WordSearch(get_puzzle())
     return ws.count_occurrences("XMAS")
+
 
 @timed
 def part2():
