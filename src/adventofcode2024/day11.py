@@ -65,5 +65,4 @@ def part2(n):
 if __name__ == "__main__":
 
     print(part1(25))
-
     print(part2(75))
