@@ -143,4 +143,4 @@ def part2():
 
 if __name__ == "__main__":
     print(part1())  # 232253028
-    # part2()  # after 8179 iterations
+    # part2()  # after 8179 iterations we see the christmas tree
