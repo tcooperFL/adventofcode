@@ -1,4 +1,4 @@
-# Link: https://adventofcode.com/2024/day/X
+# Link: https://adventofcode.com/2024/day/20
 
 from pprint import pprint
 from utils import timed
