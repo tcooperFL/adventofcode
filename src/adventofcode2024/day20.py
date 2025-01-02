@@ -46,7 +46,7 @@ def find_path(track):
     return []
 
 
-def calculate_cheats(track, path, distance=20):
+def calculate_cheats(path, distance=20):
     timings = {pos: i for i, pos in enumerate(path)}
     cheats = dict()
     for (py, px), moment in timings.items():
@@ -66,7 +66,7 @@ def calculate_cheats(track, path, distance=20):
 def part1():
     track = get_track()
     path = find_path(track)
-    cheats = calculate_cheats(track, path, distance=2)
+    cheats = calculate_cheats(path, distance=2)
     return cheats
 
 
@@ -74,7 +74,7 @@ def part1():
 def part2():
     track = get_track()
     path = find_path(track)
-    cheats = calculate_cheats(track, path, distance=20)
+    cheats = calculate_cheats(path, distance=20)
     return cheats
 
 
